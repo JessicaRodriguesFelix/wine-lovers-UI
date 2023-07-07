@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { CardImg, Row, Card, Button } from "react-bootstrap";
 
 export function Store() {
+  const quantityCart = 2;
   // Add properties expected to receive from the API
   interface Wine {
     idDrink: string;
@@ -30,16 +32,53 @@ export function Store() {
   }, []);
   return (
     <div>
-      <h1>Store</h1>
+      <h1>Drinks Lovers</h1>
       {wines.drinks && wines.drinks.length > 0 ? (
-        <ul>
-          {wines.drinks.map((wine) => (
-            <li key={wine.idDrink}>
-              {wine.strDrink} -
-              <img src={wine.strDrinkThumb} alt={wine.strDrink} />
-            </li>
-          ))}
-        </ul>
+        <Card>
+          <Row md={2} xs={1}>
+            {wines.drinks.map((wine) => (
+              <div>
+                <CardImg
+                  key={wine.idDrink}
+                  variant="top "
+                  src={wine.strDrinkThumb}
+                  alt={wine.strDrink}
+                  height="450px"
+                  style={{ objectFit: "cover" }}
+                ></CardImg>
+                <Card.Body>
+                  <Card.Title>
+                    <span>{wine.strDrink}</span>
+                  </Card.Title>
+                  <div>
+                    {quantityCart === 0 ? (
+                      <Button className="w-100">+ Add To Cart</Button>
+                    ) : (
+                      <div
+                        className="d-flex align-items-center flex-column"
+                        style={{ gap: "0.5rem" }}
+                      >
+                        <div
+                          className="d-flex align-items-center justify-content-center"
+                          style={{ gap: "0.5rem" }}
+                        >
+                          <Button>-</Button>
+                          <div>
+                            <span className="fs-4">{quantityCart}</span> in cart
+                          </div>
+                          <Button>+</Button>
+                        </div>
+                        <Button variant="danger" size="sm">
+                          Remove
+                        </Button>
+                      </div>
+                    )}
+                  </div>
+                </Card.Body>
+              </div>
+            ))}
+          </Row>
+        </Card>
       ) : (
         <p>Loading wines</p>
       )}
