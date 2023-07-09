@@ -4,24 +4,27 @@ import { StoreItem } from "../components/StoreItem";
 
 export function Store() {
   interface Wine {
-    idDrink: string;
-    strDrink: string;
-    strDrinkThumb: string;
+    id: number;
+    name: string;
+    image: string;
   }
-  interface WineData {
-    drinks: Wine[];
-    // Add any other properties you expect to receive from the API
-  }
-  const [wines, setWines] = useState<WineData>({ drinks: [] });
+  // interface WineData {
+  //    Wine[];
+  //   // Add any other properties you expect to receive from the API
+  // }
+  const [wines, setWines] = useState<Wine[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic"
-        );
+        const response = await fetch("https://api.sampleapis.com/wines/reds");
         const data = await response.json();
-        setWines(data);
+
+        const winesWithModifiedImage = data.map((wine: Wine) => ({
+          ...wine,
+          image: `${wine.image}?size=small`, // Replace "medium" with the desired image size parameter
+        }));
+        setWines(winesWithModifiedImage);
       } catch (error) {
         console.log("Error fetching wine data from API:", error);
       }
@@ -32,14 +35,14 @@ export function Store() {
   return (
     <>
       <h1>Store</h1>
-      <Row md={2} xs={1} lg={3} className="g-3">
-        {wines.drinks.map((wine) => (
-          <Col key={wine.idDrink}>
+      <Row md={3} xs={2} lg={4} className="g-3">
+        {wines.map((wine) => (
+          <Col key={wine.id}>
             <StoreItem
               // key={wine.idDrink}
-              id={parseInt(wine.idDrink)}
-              name={wine.strDrink}
-              image={wine.strDrinkThumb}
+              id={wine.id}
+              name={wine.name}
+              image={wine.image}
             />
           </Col>
         ))}

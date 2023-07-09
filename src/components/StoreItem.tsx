@@ -18,12 +18,19 @@ export function StoreItem({ id, name, image }: StoreItemProps) {
 
   return (
     <Card className="h-100">
-      <Card.Img
-        variant="top"
-        src={image}
-        height="200px"
-        style={{ objectFit: "cover" }}
-      />
+      <div
+        className="image-container"
+        style={{ height: "350px", width: "200px" }}
+      >
+        <Card.Img
+          variant="top"
+          src={image}
+          // sizes="small"
+          height="350px"
+          width="200px"
+          style={{ objectFit: "cover", height: "100%", width: "100%" }}
+        />
+      </div>
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
           <span className="fs-2">{name}</span>
