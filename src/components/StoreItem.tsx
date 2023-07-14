@@ -1,13 +1,14 @@
 import { Button, Card } from "react-bootstrap";
 import { useShoppingCart } from "../context/ShoppingCartContext";
+import { Link } from "react-router-dom";
 
 type StoreItemProps = {
   id: number;
-  name: string;
+  wine: string;
   image: string;
 };
 
-export function StoreItem({ id, name, image }: StoreItemProps) {
+export function StoreItem({ id, wine, image }: StoreItemProps) {
   const {
     getItemQuantity,
     increaseCartQuantity,
@@ -25,7 +26,6 @@ export function StoreItem({ id, name, image }: StoreItemProps) {
         <Card.Img
           variant="top"
           src={image}
-          // sizes="small"
           height="350px"
           width="200px"
           style={{ objectFit: "cover", height: "100%", width: "100%" }}
@@ -33,7 +33,7 @@ export function StoreItem({ id, name, image }: StoreItemProps) {
       </div>
       <Card.Body className="d-flex flex-column">
         <Card.Title className="d-flex justify-content-between align-items-baseline mb-4">
-          <span className="fs-2">{name}</span>
+          <Link to={`/details/${wine}`}>{wine}</Link>
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (

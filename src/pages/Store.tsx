@@ -5,19 +5,18 @@ import { StoreItem } from "../components/StoreItem";
 export function Store() {
   interface Wine {
     id: number;
-    name: string;
+    wine: string;
     image: string;
   }
-  // interface WineData {
-  //    Wine[];
-  //   // Add any other properties you expect to receive from the API
-  // }
+
   const [wines, setWines] = useState<Wine[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (wine: Wine[]) => {
       try {
-        const response = await fetch("https://api.sampleapis.com/wines/reds");
+        const response = await fetch(
+          `https://api.sampleapis.com/wines/reds/${wine}`
+        );
         const data = await response.json();
 
         const winesWithModifiedImage = data.map((wine: Wine) => ({
@@ -29,7 +28,7 @@ export function Store() {
         console.log("Error fetching wine data from API:", error);
       }
     };
-    fetchData();
+    fetchData(wines);
   }, []);
 
   return (
@@ -38,12 +37,7 @@ export function Store() {
       <Row md={3} xs={2} lg={4} className="g-3">
         {wines.map((wine) => (
           <Col key={wine.id}>
-            <StoreItem
-              // key={wine.idDrink}
-              id={wine.id}
-              name={wine.name}
-              image={wine.image}
-            />
+            <StoreItem id={wine.id} wine={wine.wine} image={wine.image} />
           </Col>
         ))}
       </Row>
