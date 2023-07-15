@@ -2,30 +2,21 @@ import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
-// interface Wine {
-//   winery: string;
-//   wine: string;
-//   rating: {
-//     average: string;
-//     reviews: string;
-//   };
-//   location: string;
-//   image: string;
-//   id: number;
-// }
+interface Wine {
+  winery: string;
+  wine: string;
+  rating: {
+    average: string;
+    reviews: string;
+  };
+  location: string;
+  image: string;
+  id: number;
+}
+
 export const Details = () => {
   const params = useParams();
-  const [selectedWine, setSelectedWine] = useState({
-    winery: "",
-    wine: "",
-    rating: {
-      average: "",
-      reviews: "",
-    },
-    location: "",
-    image: "",
-    id: 0,
-  });
+  const [selectedWine, setSelectedWine] = useState<Wine>();
 
   const fetchData = async () => {
     try {
@@ -35,7 +26,7 @@ export const Details = () => {
       //console.log(params.wine);
       const data = await response.json();
       setSelectedWine(data[0]);
-      console.log(selectedWine);
+      //console.log(selectedWine);
     } catch (error) {
       console.log("Error fetching wine data from API:", error);
     }
@@ -61,12 +52,11 @@ export const Details = () => {
             />
           </div>
           <Card.Body className="d-flex flex-column">
-            {/* <img
-              src={`https://images.vivino.com/thumbs/${selectedWine.wine}`}
-            /> */}
             <span className="fs-2">Wine: {selectedWine.wine}</span>
             <span className="fs-2">Location: {selectedWine.location}</span>
             <span className="fs-2">Winery: {selectedWine.winery}</span>
+            <span className="fs-2">Reviews: {selectedWine.rating.reviews}</span>
+            <span className="fs-2">Average: {selectedWine.rating.average}</span>
           </Card.Body>
         </Card>
       )}
