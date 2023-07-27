@@ -20,6 +20,12 @@ The primary goal of the initial MVP was to create a user-friendly interface that
 
 Happy wine exploration with Wine Lovers Club UI Project! Cheers! 🍷🍷🍷
 
+
+
+![ezgif com-crop](https://github.com/JessicaRodriguesFelix/wine-lovers-UI/assets/40796998/01e92839-32f9-4f2e-870f-3c4fe7234878)
+
+
+
 ## More information about Tech Stack
 * React: A JavaScript library for building user interfaces.
 * TypeScript: A typed superset of JavaScript that enhances code reliability and maintainability.
