@@ -4,6 +4,7 @@ import { Home } from "./pages/Home";
 import { Store } from "./pages/Store";
 import { Details } from "./pages/Details";
 import { Navbar } from "./components/Navbar";
+import LoginPage from "./components/LoginPage";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/details/:wine" element={<Details />} />
         </Routes>
       </Container>
