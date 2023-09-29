@@ -4,14 +4,14 @@ import Facebook from "../img/facebook.png";
 const LoginPage = () => {
   return (
     <div className="login">
-      {/* <h1 className="loginHeader">Choose a Login Method</h1> */}
+      <h1 className="loginHeader">Choose a Login Method</h1>
       <div className="wrapper">
         <div className="leftInputForm">
-          <div className="loginButoon google">
+          <div className="loginButton google">
             <img src={Google} alt="" className="icon" />
             Google
           </div>
-          <div className="loginButoon facebook">
+          <div className="loginButton facebook">
             <img src={Facebook} alt="" className="icon" />
             Facebook
           </div>
@@ -21,8 +21,8 @@ const LoginPage = () => {
           <div className="or">OR</div>
         </div>
         <div className="rightInputForm">
-          <input type="text" placeholder="Username"></input>
-          <input type="text" placeholder="Password"></input>
+          <input type="text" placeholder="Username" />
+          <input type="text" placeholder="Password" />
           <button className="submit">Login</button>
         </div>
       </div>
