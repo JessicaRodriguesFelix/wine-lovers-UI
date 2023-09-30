@@ -13,9 +13,9 @@ function App() {
       <Container className="mb-4">
         <Navbar />
         <Routes>
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />
-          <Route path="/login" element={<LoginPage />} />
           <Route path="/details/:wine" element={<Details />} />
         </Routes>
       </Container>
