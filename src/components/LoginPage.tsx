@@ -10,11 +10,18 @@ const LoginPage = () => {
       <h1 className="loginHeader">Choose a Login Method</h1>
       <div className="wrapper">
         <div className="leftInputForm">
-          <div className="loginButton google" onClick={google}>
+          <div
+            className="loginButton google"
+            onClick={google}
+            style={{ cursor: "pointer" }}
+          >
             <img src={Google} alt="" className="icon" />
             Google
           </div>
-          <div className="loginButton facebook">
+          <div
+            className="loginButton facebook"
+            style={{ cursor: "not-allowed" }}
+          >
             <img src={Facebook} alt="" className="icon" />
             Facebook
           </div>
