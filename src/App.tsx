@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { Home } from "./pages/Home";
 import { Store } from "./pages/Store";
@@ -6,12 +6,44 @@ import { Details } from "./pages/Details";
 import { Navbar } from "./components/Navbar";
 import LoginPage from "./components/LoginPage";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:5000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          console.error("Authentication failed! Status:", response.status);
+          return null;
+        })
+        .then((responseObject) => {
+          if (responseObject) {
+            setUser(responseObject.user);
+          } else {
+            navigate("/login");
+          }
+        })
+        .catch((error) => {
+          console.error("Error check:", error);
+        });
+    };
+    getUser();
+  }, [navigate]);
   return (
     <ShoppingCartProvider>
       <Container className="mb-4">
-        <Navbar />
+        <Navbar user={user} />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/" element={<Home />} />

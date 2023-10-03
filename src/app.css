@@ -103,3 +103,46 @@ input {
   color: lightgray;
   font-weight: bolder;
 }
+.listItem {
+  margin-right: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  float: right;
+  list-style-type: none;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+.navbar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-list .listItem {
+  margin-right: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  list-style-type: none;
+}
+
+.navbar-list {
+  margin-left: auto;
+}

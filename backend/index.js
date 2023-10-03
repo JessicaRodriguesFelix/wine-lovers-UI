@@ -23,8 +23,8 @@ app.use(
     secret: GOOGLE_CONSUMER_SECRET,
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 0 },
-    experies: false,
+    cookie: { maxAge: 30 * 60 * 1000 },
+    expires: false,
   })
 );
 app.use(passport.initialize());

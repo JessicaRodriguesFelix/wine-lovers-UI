@@ -2,15 +2,16 @@ import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 
-export function Navbar() {
+export function Navbar({ user }: any) {
+  const logout = () => {
+    console.log("Logout button clicked here");
+    window.open("http://localhost:5000/auth/logout", "_self");
+  };
   const { openCart, cartQuantity } = useShoppingCart();
   return (
     <NavbarBs sticky="top" className="bg-white shadow-sm mb-3">
       <Container>
         <Nav className="me-auto">
-          <Nav.Link to="/login" as={NavLink}>
-            Login
-          </Nav.Link>
           <Nav.Link to="/" as={NavLink}>
             Home
           </Nav.Link>
@@ -18,6 +19,28 @@ export function Navbar() {
             Store
           </Nav.Link>
         </Nav>
+        {user ? (
+          <ul className="list navbar-list">
+            <li className="listItem">
+              <img
+                src={user.photos[0].value}
+                alt=""
+                className="avatar"
+                style={{ cursor: "default" }}
+              />
+            </li>
+            <li className="listItem" style={{ cursor: "default" }}>
+              {user.displayName}
+            </li>
+            <li className="listItem" onClick={logout}>
+              Logout
+            </li>
+          </ul>
+        ) : (
+          <Nav.Link to="/login" as={NavLink}>
+            Login
+          </Nav.Link>
+        )}
         {cartQuantity > 0 && (
           <div>
             <Button
