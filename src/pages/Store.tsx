@@ -7,15 +7,13 @@ import CustomModal from "../components/CustomModal";
 
 export function Store() {
   const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState(""); // Message to display in the modal
+  const [modalMessage, setModalMessage] = useState("");
 
-  // Function to show the custom modal
   function showCustomModal(message: string) {
     setModalMessage(message);
     setShowModal(true);
   }
 
-  // Function to hide the custom modal
   function hideCustomModal() {
     setShowModal(false);
   }
