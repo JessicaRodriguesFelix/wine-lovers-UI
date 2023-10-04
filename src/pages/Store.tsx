@@ -3,8 +3,22 @@ import { Col, Row } from "react-bootstrap";
 import { StoreItem } from "../components/StoreItem";
 import { InputGroup } from "react-bootstrap";
 import { FormControl } from "react-bootstrap";
+import CustomModal from "../components/CustomModal";
 
 export function Store() {
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState(""); // Message to display in the modal
+
+  // Function to show the custom modal
+  function showCustomModal(message: string) {
+    setModalMessage(message);
+    setShowModal(true);
+  }
+
+  // Function to hide the custom modal
+  function hideCustomModal() {
+    setShowModal(false);
+  }
   // Define the Wine interface for type
   interface Wine {
     id: number;
@@ -16,15 +30,22 @@ export function Store() {
   const [wines, setWines] = useState<Wine[]>([]);
 
   // State to handle the search query
-  const [search] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
   const [filteredWine, setFilteredWine] = useState<Wine[]>([]);
 
   // Function to handle changes in the search input field
   function handleChange(e: any) {
     const searchValue = e.target.value;
-    const regex = new RegExp(searchValue, "gi"); //gi = global, case-insensitive search
 
-    // Filter the wines based on the search input
+    const regex = /^[a-zA-Z0-9]*$/;
+    if (!regex.test(searchValue)) {
+      showCustomModal(
+        "Special characters are not allowed. Please enter only letters and numbers."
+      );
+      e.target.value = "";
+      return;
+    }
+    setSearch(searchValue);
     const filteredWineTemp = wines.filter((wine) => {
       return wine.wine.match(regex);
     });
@@ -72,6 +93,11 @@ export function Store() {
           onChange={handleChange}
         />
       </InputGroup>
+      <CustomModal
+        show={showModal}
+        handleClose={hideCustomModal}
+        message={modalMessage}
+      />
       <h1>Store</h1>
       {!filteredWine ? (
         <Row md={3} xs={2} lg={4} className="g-3">
