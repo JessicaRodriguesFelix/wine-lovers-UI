@@ -43,6 +43,10 @@ npm run dev
 - New Feature: Manual Registration (Work in Progress): In this early stage, we've implemented the backend functionality for manual registration. This includes secure password hashing and email verification checks, ensuring that user data is handled with care and security.
 - Input Resctrictions: Seacr bar in the Store page only allow users to enter numbers or strings. Special characters and other potentially harmful inputs are not permitted. This enhancement helps protect our platform from malicious inputs and potential security threats.
 
+![image](https://github.com/JessicaRodriguesFelix/wine-lovers-UI/assets/40796998/012d2161-0992-42da-9eb3-3453c5f99789)
+![image](https://github.com/JessicaRodriguesFelix/wine-lovers-UI/assets/40796998/13c3b770-091c-49a0-9541-e695dd81bb2b)
+
+
 ## Future Enhancements
 
 This is just the first version of the Wine Lovers Club UI Project, and we have exciting plans for its growth:
