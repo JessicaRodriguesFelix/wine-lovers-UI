@@ -37,12 +37,19 @@ npm run dev
 - Start backend oauth server
   npm start
 
+## V.2 Enhancements
+
+- New Feature: Login Page with Google Account Integration (Google OAuth).
+- New Feature: Manual Registration (Work in Progress): In this early stage, we've implemented the backend functionality for manual registration. This includes secure password hashing and email verification checks, ensuring that user data is handled with care and security.
+- Input Resctrictions: Seacr bar in the Store page only allow users to enter numbers or strings. Special characters and other potentially harmful inputs are not permitted. This enhancement helps protect our platform from malicious inputs and potential security threats.
+
 ## Future Enhancements
 
 This is just the first version of the Wine Lovers Club UI Project, and we have exciting plans for its growth:
 
 - User Authentication: Implement a user authentication system to allow users to create accounts and personalize their wine preferences.
 - Shopping Cart Persistence: Store the cart data in the browser's local storage for a seamless shopping experience across sessions.
+- Facebook Login Option.
 
 ## Acknowledgments
 
