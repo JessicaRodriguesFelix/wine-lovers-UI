@@ -3,20 +3,27 @@ import cors from "cors";
 import session from "express-session";
 import passport from "./passport.js";
 import router from "./routes/auth.js";
+import dotenv from "dotenv";
+dotenv.config();
 
-const GOOGLE_CLIENT_ID =
-  "477484557872-qdpaaesjpqb9qsatsg92liboc16d9oe2.apps.googleusercontent.com";
-const GOOGLE_CONSUMER_SECRET = "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";
+const GOOGLE_CONSUMER_SECRET = process.env.GOOGLE_CONSUMER_SECRET;
+
+//print out the environment variables to verify that they are being loaded correctly
+// console.log("GOOGLE_CLIENT_ID:", process.env.GOOGLE_CLIENT_ID);
+// console.log("GOOGLE_CONSUMER_SECRET:", process.env.GOOGLE_CONSUMER_SECRET);
 
 const app = express();
+app.use(express.json());
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    method: "GET, POST, PUT, DELETE",
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
+app.options("*", cors(corsOptions));
 
 app.use(
   session({

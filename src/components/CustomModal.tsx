@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 
 interface CustomModalProps {
   show: boolean;
@@ -15,7 +15,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Special Character Alert</Modal.Title>
+        <Modal.Title>Invalid Input</Modal.Title>
       </Modal.Header>
       <Modal.Body>{message}</Modal.Body>
     </Modal>

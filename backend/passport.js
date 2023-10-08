@@ -1,10 +1,11 @@
 import GoogleStrategy from "passport-google-oauth20";
+import dotenv from "dotenv";
+dotenv.config();
 
 import passport from "passport";
 
-const GOOGLE_CLIENT_ID =
-  "477484557872-qdpaaesjpqb9qsatsg92liboc16d9oe2.apps.googleusercontent.com";
-const GOOGLE_CONSUMER_SECRET = "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";
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CONSUMER_SECRET = process.env.GOOGLE_CONSUMER_SECRET;
 
 passport.use(
   new GoogleStrategy(

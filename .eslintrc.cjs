@@ -8,6 +8,9 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   parserOptions: { ecmaVersion: "latest", sourceType: "module" },
   plugins: ["react-refresh"],
+  globals: {
+    process: true,
+  },
   rules: {
     // "react-refresh/only-export-components": "warn",
     "@typescript-eslint/no-var-requires": "off",

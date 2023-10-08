@@ -9,6 +9,7 @@ import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import { useEffect, useState } from "react";
 
 function App() {
+  console.log("Rendering App component");
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -23,17 +24,19 @@ function App() {
         },
       })
         .then((response) => {
-          if (response.status === 200) return response.json();
-          console.error("Authentication failed! Status:", response.status);
-          return null;
+          console.log("Response status:", response.status);
+          return response.json();
         })
         .then((responseObject) => {
+          console.log("Response object:", responseObject);
           if (responseObject) {
             setUser(responseObject.user);
+            console.log("User data:", responseObject.user);
           } else {
             navigate("/login");
           }
         })
+
         .catch((error) => {
           console.error("Error check:", error);
         });
